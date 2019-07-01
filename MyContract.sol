@@ -17,7 +17,7 @@ contract MyContract {
     uint public myUint = 1;
     
     // declare enum
-    enum State { Waiting, Ready, Active};
+    enum State { Waiting, Ready, Active }
     
     State public state;
     
