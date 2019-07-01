@@ -34,6 +34,13 @@ contract MyContract {
     // mapping Person to MyContract as a map with key and value
     mapping(uint => Person) public mappingPeople;
     
+    // delcare owner property
+    address owner;
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+    
     constructor() public {
         value = "myValue";
         state = State.Waiting;
@@ -60,7 +67,7 @@ contract MyContract {
         peopleCount += 1;
     }
     
-    function addPersonMapping(string memory _firstName, string memory _lastName) public {
+    function addPersonMapping(string memory _firstName, string memory _lastName) public onlyOwner{
         incrementCount();
         mappingPeople[peopleCount] = Person(peopleCount, _firstName, _lastName);
     }
