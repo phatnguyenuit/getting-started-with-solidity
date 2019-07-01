@@ -61,7 +61,13 @@ contract MyContract {
     }
     
     function addPersonMapping(string memory _firstName, string memory _lastName) public {
-        peopleCount += 1;
+        incrementCount();
         mappingPeople[peopleCount] = Person(peopleCount, _firstName, _lastName);
+    }
+    
+    // declare internal function like private method in OOP
+    // only be invoked in MyContract
+    function incrementCount() internal {
+        peopleCount += 1;
     }
 }
