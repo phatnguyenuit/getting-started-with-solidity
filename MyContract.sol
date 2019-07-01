@@ -21,6 +21,19 @@ contract MyContract {
     
     State public state;
     
+    // declare struct
+    struct Person {
+        uint id;
+        string firstName;
+        string lastName;
+    }
+    
+    Person[] public people;
+    uint256 public peopleCount;
+    
+    // mapping Person to MyContract as a map with key and value
+    mapping(uint => Person) public mappingPeople;
+    
     constructor() public {
         value = "myValue";
         state = State.Waiting;
@@ -40,5 +53,15 @@ contract MyContract {
     
     function checkIsActive() public view returns(bool) {
         return state == State.Active;
+    }
+    
+    function addPerson(string memory _firstName, string memory _lastName) public {
+        people.push(Person(1, _firstName, _lastName));
+        peopleCount += 1;
+    }
+    
+    function addPersonMapping(string memory _firstName, string memory _lastName) public {
+        peopleCount += 1;
+        mappingPeople[peopleCount] = Person(peopleCount, _firstName, _lastName);
     }
 }
